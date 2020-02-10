@@ -1,6 +1,6 @@
 {
-    "name": "todo-nl-2",
-    "version": "0.1.0",
+    "name": "Novelist player",
+    "version": "0.0.3",
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",
@@ -8,6 +8,7 @@
         "lint": "vue-cli-service lint"
     },
     "dependencies": {
+        "bootstrap": "^4.4.1",
         "core-js": "^3.6.4",
         "vue": "^2.6.11"
     },
