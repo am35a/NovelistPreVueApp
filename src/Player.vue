@@ -1,5 +1,6 @@
 <template>
-    <div class="player-container position-absolute overflow-hidden bg-light" v-bind:class="{ 'd-none' : !isShowFullPlayer, 'd-flex' : isShowFullPlayer }">
+    <!-- <div class="player-container position-absolute overflow-hidden bg-light" v-bind:class="{ 'd-none' : !isShowFullPlayer, 'd-flex' : isShowFullPlayer }"> -->
+    <div class="player-container position-absolute overflow-hidden bg-light">
         {{ bookIndex }}
         ... here is Player
     </div>    
@@ -7,10 +8,11 @@
 
 <script>
     export default {
+        props:[ 'bookIndex' ],
         data(){
             return{
-                isShowFullPlayer: false,
-                bookIndex: "..."
+                // isShowFullPlayer: false,
+                // bookIndex: "..."
             }
         }
     }

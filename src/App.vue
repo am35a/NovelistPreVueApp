@@ -1,6 +1,7 @@
 <template>
 	<div>
-		<app-player></app-player>
+		<app-player v-show="isShowFullPlayer" :bookIndex="bookIndex"></app-player>
+		<!-- <app-player v-show="isHideListened" v-bind:bookIndex="bookIndex"></app-player> -->
 		<main class="container text-light mb-4 pb-4">
 			<transition name="slide-fade">
 				...
@@ -64,6 +65,8 @@
 			return {
 				isHideListened: false,
 				isSortMenuOpen: false,
+				isShowFullPlayer: false,
+				bookIndex: '',
 				books: [
 					{
 						thumbnail: "http://mobitoon.ru/novelist/images/books/1/preview.jpg",
@@ -127,7 +130,10 @@
 				this.isHideListened = !this.isHideListened
 			},
 			selectBook(index){
-				console.log(index)
+				this.isShowFullPlayer = !this.isShowFullPlayer
+				this.bookIndex = index;
+				// 
+				console.log(index, this.isShowFullPlayer)
 			}
 		},
 		watch: {
