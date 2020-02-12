@@ -151,8 +151,8 @@
         width: 75px;
     }
     .opacity-50:not(:hover) {
-        opacity: .50;
-    }
+		opacity: .50;
+	}
     .slide-fade-enter-active {
         transition: all .3s ease-out;
     }
@@ -164,11 +164,25 @@
         transform: translateY(-30px);
         opacity: 0;
     }
-    /* nav bar */
-    .h-32p {
-        height: 32px;
-    }
-	.b-0 {
-		bottom: 0;
+</style>
+<style>
+	.l-0 { left: 0;}
+	.t-0 { top: 0; }
+	.r-0 { right: 0;}
+	.b-0 { bottom: 0; }
+    .w-32p { width: 32px; }
+	.h-32p { height: 32px; }
+
+
+	.wh-18p {
+		width: 18px;
+		height: 18px;
+	}
+	.wh-24p {
+		width: 24px;
+		height: 24px;
+	}
+	.content-box {
+		box-sizing: content-box;
 	}
 </style>
