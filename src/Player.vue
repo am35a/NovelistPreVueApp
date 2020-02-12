@@ -1,18 +1,26 @@
 <template>
-    <!-- <div class="player-container position-absolute overflow-hidden bg-light" v-bind:class="{ 'd-none' : !isShowFullPlayer, 'd-flex' : isShowFullPlayer }"> -->
     <div class="player-container position-absolute overflow-hidden bg-light">
         {{ bookIndex }}
         ... here is Player
+        <button v-on:click="closePlayer" >Close</button>
     </div>    
 </template>
 
 <script>
     export default {
-        props:[ 'bookIndex' ],
+        props:[
+            'bookIndex'
+        ],
         data(){
             return{
                 // isShowFullPlayer: false,
                 // bookIndex: "..."
+            }
+        },
+        methods: {
+            closePlayer(){
+                // console.log('close player')
+                this.$emit('closePlayer', false)
             }
         }
     }

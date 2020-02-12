@@ -1,7 +1,6 @@
 <template>
 	<div>
-		<app-player v-show="isShowFullPlayer" :bookIndex="bookIndex"></app-player>
-		<!-- <app-player v-show="isHideListened" v-bind:bookIndex="bookIndex"></app-player> -->
+		<app-player v-show="isShowFullPlayer" v-bind:bookIndex="bookIndex" v-on:closePlayer="isShowFullPlayer = !isShowFullPlayer"></app-player>
 		<main class="container text-light mb-4 pb-4">
 			<transition name="slide-fade">
 				...
@@ -137,6 +136,9 @@
 			}
 		},
 		watch: {
+			// isShowFullPlayer(){
+			// 	alert("///")
+			// }
 		},
 		components: {
 		}
