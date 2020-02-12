@@ -1,15 +1,16 @@
 <template>
 	<div>
+		<app-player></app-player>
 		<main class="container text-light mb-4 pb-4">
 			<transition name="slide-fade">
 				...
 			</transition>
-			<div class="media my-3" v-for="(book, index) in books" v-bind:key="index" v-show="!(isHideListened && book.listened == 100)">
+			<div class="media my-3" v-for="(book, index) in books" v-bind:key="index" v-show="!(isHideListened && book.listened == 100)" v-on:click="selectBook(index)">
 				<img class="mr-3 w-75p rounded" v-bind:src="book.thumbnail" v-bind:alt="book.title + ' by ' + book.author">
 				<div class="media-body">
 					<div class="h5 mb-0">{{ book.title }}</div>
 					<small class="text-muted">{{ book.author }}</small>
-					<div class="mt-1" v-bind:class="{ 'text-success': book.listened < 100 }">{{ book.listened == 100 ? 'Listening completed' : book.listened + ' % listened' }}</div>
+					<div class="mt-1" v-bind:class="{ 'text-success': book.listened < 100 }">{{ book.listened == 100 ? 'Listening completed' : book.listened + '% listened' }}</div>
 				</div>
 			</div>
 		</main>
@@ -124,6 +125,9 @@
 		methods: {
 			toggleHideListened(){
 				this.isHideListened = !this.isHideListened
+			},
+			selectBook(index){
+				console.log(index)
 			}
 		},
 		watch: {
