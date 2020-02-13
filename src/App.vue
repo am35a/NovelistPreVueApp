@@ -1,6 +1,18 @@
 <template>
 	<div>
-		<app-player v-show="isShowFullPlayer" v-bind:bookIndex="bookIndex" v-on:closePlayer="isShowFullPlayer = !isShowFullPlayer"></app-player>
+		<app-player v-show="isShowFullPlayer" v-bind:bookIndex="bookIndex" v-on:closePlayer="isShowFullPlayer = !isShowFullPlayer">
+			<div slot="playerContainerBkg" class="player-container-bkg position-absolute l-0 t-0 w-100 h-100" v-bind:style="{ 'background-image' : 'url(' + books[bookIndex].thumbnail + ')'}"></div>
+			<!-- <img slot="bookCoverPreview" class="img-fluid rounded-lg shadow" v-bind:src="books[bookIndex].thumbnail" v-bind:alt="books[bookIndex].title + ' by ' + books[bookIndex].author"> -->
+            <svg slot="bookCoverPreview" class="img-fluid rounded-lg shadow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+                <title>{{ books[bookIndex].title + ' by ' + books[bookIndex].author }}</title>
+                <defs>
+                    <pattern id="bookCover" patternUnits="userSpaceOnUse" width="512" height="512">
+                        <image v-bind:xlink:href="books[bookIndex].thumbnail" x="0" y="0" width="512" height="512"/>
+                    </pattern>
+                </defs>
+                <rect width="512" height="512" fill="url(#bookCover)"></rect>
+            </svg>
+		</app-player>
 		<main class="container text-light mb-4 pb-4">
 			<transition name="slide-fade">
 				...
@@ -65,7 +77,7 @@
 				isHideListened: false,
 				isSortMenuOpen: false,
 				isShowFullPlayer: false,
-				bookIndex: '',
+				bookIndex: 0,
 				books: [
 					{
 						thumbnail: "http://mobitoon.ru/novelist/images/books/1/preview.jpg",
