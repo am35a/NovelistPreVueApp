@@ -142,14 +142,14 @@
 			selectBook(index){
 				this.isShowFullPlayer = !this.isShowFullPlayer
 				this.bookIndex = index;
-				// 
+
 				console.log(index, this.isShowFullPlayer)
 			}
 		},
 		watch: {
-			// isShowFullPlayer(){
-			// 	alert("///")
-			// }
+			isShowFullPlayer(){
+				console.log('isShowFullPlayer was change')
+			}
 		},
 		components: {
 		}
