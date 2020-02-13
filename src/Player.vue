@@ -1,5 +1,5 @@
 <template>
-    <div class="player-container position-fixed overflow-hidden bg-light l-0 b-0 flex-column">
+    <div class="player-container position-fixed overflow-hidden bg-light l-0 b-0 flex-column text-black-50">
         <div class="player-container-bkg position-absolute l-0 t-0 w-100 h-100" style="background-image: url(http://mobitoon.ru/novelist/images/books/3/preview.jpg)"></div>
         <div class="d-flex flex-row">
             <div class="d-flex justify-content-between w-50">
@@ -15,9 +15,9 @@
         </div>
         <div class="my-auto px-3">
             <div class="position-relative">
-                <input id="playerRange" class="custom-range player-custom-range position-absolute" type="range" value="75" min="0" max="100">
+                <input class="custom-range player-custom-range position-absolute" type="range" v-model="playerRange" min="0" max="100">
                 <div class="progress bg-white" style="height: 1px;">
-                    <div id="playerRangeProgressBar" class="progress-bar bg-success" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-success" role="progressbar" v-bind:style="{width: playerRange + '%'}"></div>
                 </div>
             </div>
 			<div class="d-flex justify-content-between align-items-start">
@@ -29,7 +29,7 @@
 				<small>43200</small>
 			</div>
             <div class="px-4">
-                <img class="img-fluid rounded" src="http://mobitoon.ru/novelist/images/books/3/preview.jpg" alt="Third book by Mrs. Third">
+                <img class="img-fluid rounded" src="http://mobitoon.ru/novelist/images/books/3/preview.jpg" alt="Book title">
             </div>
             {{ bookIndex }}
         </div>
@@ -43,6 +43,7 @@
         ],
         data(){
             return{
+                playerRange: '10',
                 // isShowFullPlayer: false,
                 // bookIndex: "..."
             }
