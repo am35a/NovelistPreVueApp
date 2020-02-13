@@ -172,7 +172,7 @@
 	.b-0 { bottom: 0; }
     .w-32p { width: 32px; }
 	.h-32p { height: 32px; }
-
+	.text-black-75 { color: rgba(0, 0, 0, .75); }
 
 	.wh-18p {
 		width: 18px;
@@ -181,6 +181,14 @@
 	.wh-24p {
 		width: 24px;
 		height: 24px;
+	}
+	.wh-42p {
+		width: 42px;
+		height: 42px;
+	}
+	.wh-54p {
+		width: 54px;
+		height: 54px;
 	}
 	.content-box {
 		box-sizing: content-box;

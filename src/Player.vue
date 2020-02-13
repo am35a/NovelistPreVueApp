@@ -1,5 +1,5 @@
 <template>
-    <div class="player-container position-fixed overflow-hidden bg-light l-0 b-0 flex-column text-black-50">
+    <div class="player-container position-fixed overflow-hidden bg-light l-0 b-0 flex-column text-black-75">
         <div class="player-container-bkg position-absolute l-0 t-0 w-100 h-100" style="background-image: url(http://mobitoon.ru/novelist/images/books/3/preview.jpg)"></div>
         <div class="d-flex flex-row">
             <div class="d-flex justify-content-between w-50">
@@ -31,7 +31,29 @@
             <div class="px-4">
                 <img class="img-fluid rounded" src="http://mobitoon.ru/novelist/images/books/3/preview.jpg" alt="Book title">
             </div>
-            {{ bookIndex }}
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <svg class="wh-24p p-4 content-box" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zM142.1 273l135.5 135.5c9.4 9.4 24.6 9.4 33.9 0l17-17c9.4-9.4 9.4-24.6 0-33.9L226.9 256l101.6-101.6c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L142.1 239c-9.4 9.4-9.4 24.6 0 34z"></path></svg>
+                </div>
+                <div class="text-truncate">Title of a chapter lorem</div>
+                <div>
+                    <svg class="wh-24p p-4 content-box" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm113.9 231L234.4 103.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L285.1 256 183.5 357.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L369.9 273c9.4-9.4 9.4-24.6 0-34z"></path></svg>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="p-3 mt-4 text-center">
+                    <svg class="wh-42p" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M11.5 280.6l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2zm256 0l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2z"></path></svg>
+                    <div><sup>-100 sig</sup></div>
+                </div>
+                <div class="mx-3">
+                    <svg class="wh-54p p-4 content-box" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path></svg>
+                </div>
+                <div class="p-3 mt-4 text-center">
+                    <svg class="wh-42p" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M500.5 231.4l-192-160C287.9 54.3 256 68.6 256 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2zm-256 0l-192-160C31.9 54.3 0 68.6 0 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2z"></path></svg>
+                    <div><sup>+100 sig</sup></div>
+                </div>
+            </div>
+            <!-- {{ bookIndex }} -->
         </div>
     </div>    
 </template>
