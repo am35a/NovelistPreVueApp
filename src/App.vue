@@ -3,7 +3,12 @@
 		<app-player v-if="isShowFullPlayer"></app-player>
 		<main class="container text-light mb-4 pb-4">
 			<transition name="slide-fade">
-				...
+				<div v-show="isShowAlerts" class="fixed-top text-center p-4">
+					<div class="alert alert-dark small p-2 border-0">
+						<span v-show="isHideListened">Listened books are hide</span>
+						<span v-show="!isHideListened">Listened books are show</span>
+					</div>
+				</div>
 			</transition>
 			<div class="media align-items-center my-3" v-for="(book, index) in books" v-bind:key="index" v-show="!(isHideListened && book.listened == 100)" v-on:click="selectBook(index)">
 				<img class="mr-3 wh-78p rounded" v-bind:src="book.thumbnail" v-bind:alt="book.title + ' by ' + book.author">
@@ -38,6 +43,7 @@
 	export default {
 		data(){
 			return {
+				isShowAlerts: false,
 				isHideListened: false,
 				isSortMenuOpen: false,
 				isShowFullPlayer: false,
@@ -112,6 +118,10 @@
 			}
 		},
 		watch: {
+			isHideListened(){
+				this.isShowAlerts = true
+				setTimeout(() => this.isShowAlerts = false, 2000)
+			},
 			isShowFullPlayer(){
 				console.log('isShowFullPlayer was change')
 			}
