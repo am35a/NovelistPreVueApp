@@ -1,6 +1,6 @@
 <template>
     <div class="player-container position-fixed overflow-hidden bg-light l-0 b-0 flex-column text-black-75">
-		<div class="player-container-bkg position-absolute l-0 t-0 w-100 h-100" v-bind:style="{ 'background-image' : 'url(' + this.$parent.books[bookIndex].thumbnail + ')'}"></div>
+		<div class="player-container-bkg position-absolute l-0 t-0 w-100 h-100" v-bind:style="{ 'background-image' : 'url(' + this.$parent.books[this.$parent.bookIndex].thumbnail + ')'}"></div>
         <div class="d-flex flex-row">
             <div class="d-flex justify-content-between w-50">
                 <svg class="wh-18p p-3 content-box" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M352 320c-22.608 0-43.387 7.819-59.79 20.895l-102.486-64.054a96.551 96.551 0 0 0 0-41.683l102.486-64.054C308.613 184.181 329.392 192 352 192c53.019 0 96-42.981 96-96S405.019 0 352 0s-96 42.981-96 96c0 7.158.79 14.13 2.276 20.841L155.79 180.895C139.387 167.819 118.608 160 96 160c-53.019 0-96 42.981-96 96s42.981 96 96 96c22.608 0 43.387-7.819 59.79-20.895l102.486 64.054A96.301 96.301 0 0 0 256 416c0 53.019 42.981 96 96 96s96-42.981 96-96-42.981-96-96-96z"></path></svg>
@@ -17,7 +17,7 @@
             <div class="position-relative">
                 <input class="custom-range player-custom-range position-absolute" type="range" v-model="playerRange" min="0" max="100">
                 <div class="progress bg-white" style="height: 1px;">
-                    <div class="progress-bar bg-success" role="progressbar" v-bind:style="{width: this.$parent.books[bookIndex].listened + '%'}"></div>
+                    <div class="progress-bar bg-success" role="progressbar" v-bind:style="{width: this.$parent.books[this.$parent.bookIndex].listened + '%'}"></div>
                 </div>
             </div>
 			<div class="d-flex justify-content-between align-items-start">
@@ -30,10 +30,10 @@
 			</div>
             <div class="px-4 text-center">
                 <svg slot="bookCoverPreview" class="img-fluid rounded-lg shadow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-                    <title>{{ this.$parent.books[bookIndex].title + ' by ' + this.$parent.books[bookIndex].author }}</title>
+                    <title>{{ this.$parent.books[this.$parent.bookIndex].title + ' by ' + this.$parent.books[this.$parent.bookIndex].author }}</title>
                     <defs>
                         <pattern id="bookCover" patternUnits="userSpaceOnUse" width="512" height="512">
-                            <image v-bind:xlink:href="this.$parent.books[bookIndex].thumbnail" x="0" y="0" width="512" height="512"/>
+                            <image v-bind:xlink:href="this.$parent.books[this.$parent.bookIndex].thumbnail" x="0" y="0" width="512" height="512"/>
                         </pattern>
                     </defs>
                     <rect width="512" height="512" fill="url(#bookCover)"></rect>
@@ -61,7 +61,6 @@
                     <div><sup>+100 sig</sup></div>
                 </div>
             </div>
-            <!-- {{ bookIndex }} -->
         </div>
     </div>
 </template>
@@ -69,24 +68,22 @@
 <script>
     export default {
         props:[
-            'bookIndex'
         ],
         data(){
             return{
-                playerRange: this.$parent.books[this.bookIndex].listened,
-                // isShowFullPlayer: false,
-                // bookIndex: "..."
+                playerRange: this.$parent.books[this.$parent.bookIndex].listened,
             }
         },
         watch: {
             playerRange(){
-                this.$parent.books[this.bookIndex].listened = this.playerRange
+                this.$parent.books[this.$parent.bookIndex].listened = this.playerRange
             }
         },
         methods: {
             closePlayer(){
                 this.$parent.isShowFullPlayer = false
             }
+
         }
     }
 </script>
@@ -109,7 +106,7 @@
     }
 	.player-custom-range {
 		transform: translateY(-50%);
-		/* opacity: 0; */
+		opacity: 0;
 		z-index: 1;
 	}
 </style>

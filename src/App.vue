@@ -1,16 +1,16 @@
 <template>
 	<div>
-		<app-player v-show="isShowFullPlayer" v-bind:bookIndex="bookIndex"></app-player>
+		<app-player v-if="isShowFullPlayer"></app-player>
 		<main class="container text-light mb-4 pb-4">
 			<transition name="slide-fade">
 				...
 			</transition>
-			<div class="media my-3" v-for="(book, index) in books" v-bind:key="index" v-show="!(isHideListened && book.listened == 100)" v-on:click="selectBook(index)">
-				<img class="mr-3 w-75p rounded" v-bind:src="book.thumbnail" v-bind:alt="book.title + ' by ' + book.author">
+			<div class="media align-items-center my-3" v-for="(book, index) in books" v-bind:key="index" v-show="!(isHideListened && book.listened == 100)" v-on:click="selectBook(index)">
+				<img class="mr-3 wh-78p rounded" v-bind:src="book.thumbnail" v-bind:alt="book.title + ' by ' + book.author">
 				<div class="media-body">
 					<div class="h5 mb-0">{{ book.title }}</div>
 					<small class="text-muted">{{ book.author }}</small>
-					<div class="mt-1" v-bind:class="{ 'text-success': book.listened < 100 }">{{ book.listened == 100 ? 'Listening completed' : book.listened + '% listened' }}</div>
+					<div v-bind:class="{ 'text-success': book.listened < 100 }">{{ book.listened == 100 ? 'Listening completed' : book.listened + '% listened' }}</div>
 				</div>
 			</div>
 		</main>
@@ -129,7 +129,7 @@
 				this.isHideListened = !this.isHideListened
 			},
 			selectBook(index){
-				this.isShowFullPlayer = !this.isShowFullPlayer
+				this.isShowFullPlayer = true
 				this.bookIndex = index;
 
 				console.log(index, this.isShowFullPlayer)
@@ -146,13 +146,9 @@
 </script>
 
 <style scoped>
-    /* book list */
-    .w-75p {
-        width: 75px;
-    }
-    .opacity-50:not(:hover) {
+    /* .opacity-50:not(:hover) {
 		opacity: .50;
-	}
+	} */
     .slide-fade-enter-active {
         transition: all .3s ease-out;
     }
@@ -164,33 +160,4 @@
         transform: translateY(-30px);
         opacity: 0;
     }
-</style>
-<style>
-	.l-0 { left: 0;}
-	.t-0 { top: 0; }
-	.r-0 { right: 0;}
-	.b-0 { bottom: 0; }
-    .w-32p { width: 32px; }
-	.h-32p { height: 32px; }
-	.text-black-75 { color: rgba(0, 0, 0, .75); }
-
-	.wh-18p {
-		width: 18px;
-		height: 18px;
-	}
-	.wh-24p {
-		width: 24px;
-		height: 24px;
-	}
-	.wh-42p {
-		width: 42px;
-		height: 42px;
-	}
-	.wh-54p {
-		width: 54px;
-		height: 54px;
-	}
-	.content-box {
-		box-sizing: content-box;
-	}
 </style>

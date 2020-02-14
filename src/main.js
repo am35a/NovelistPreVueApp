@@ -3,6 +3,7 @@ import App from './App.vue'
 import Player from './Player.vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
+import './assets/style.css'
 
 Vue.config.productionTip = false
 
