@@ -1,9 +1,7 @@
-	.l-0 { left: 0;}
+	.l-0 { left: 0; }
 	.t-0 { top: 0; }
-	.r-0 { right: 0;}
+	.r-0 { right: 0; }
 	.b-0 { bottom: 0; }
-    .w-32p { width: 32px; }
-	.h-32p { height: 32px; }
 	.text-black-75 { color: rgba(0, 0, 0, .75); }
 
 	.wh-18p {
@@ -13,6 +11,10 @@
 	.wh-24p {
 		width: 24px;
 		height: 24px;
+	}
+	.wh-30p {
+		width: 30px;
+		height: 30px;
 	}
 	.wh-42p {
 		width: 42px;

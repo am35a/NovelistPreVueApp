@@ -1,9 +1,11 @@
 <template>
 	<div>
-		<app-player v-if="isShowFullPlayer"></app-player>
+		<transition name="fade">
+			<app-player v-if="isShowFullPlayer"></app-player>
+		</transition>
 		<main class="container text-light mb-4 pb-4">
-			<transition name="slide-fade">
-				<div v-show="isShowAlerts" class="fixed-top text-center p-4">
+			<transition name="fade-slide-y">
+				<div v-show="isShowAlerts && !isAboutShow" class="fixed-top text-center p-4">
 					<div class="alert alert-dark small p-2 border-0">
 						<span v-show="isHideListened">Listened books are hide</span>
 						<span v-show="!isHideListened">Listened books are show</span>
@@ -14,14 +16,30 @@
 				<img class="mr-3 wh-78p rounded" v-bind:src="book.thumbnail" v-bind:alt="book.title + ' by ' + book.author">
 				<div class="media-body">
 					<div class="h5 mb-0">{{ book.title }}</div>
-					<small class="text-muted">{{ book.author }}</small>
-					<div v-bind:class="{ 'text-success': book.listened < 100 }">{{ book.listened == 100 ? 'Listening completed' : book.listened + '% listened' }}</div>
+					<small class="text-white-50">{{ book.author }}</small>
+					<div v-bind:class="{ 'text-success' : book.listened < 100 }">{{ book.listened == 100 ? 'Listening completed' : book.listened + '% listened' }}</div>
 				</div>
 			</div>
+			<transition name="fade">
+				<div v-show="isAboutShow" class="about-container position-fixed l-0 t-0 w-100 h-100 bg-dark">
+					<div class="d-flex flex-column h-100 pb-5 container">
+						<a class="w-50 mx-auto mt-5" href="http://noveli.st" target="_blank">
+							<img  src="./assets/logoname.svg" alt="Novelist">
+						</a>
+						<div class="m-auto">
+							... yesterday, here today and in the future all innovations from Novelist guarantee the best ever books listening product!
+							<div class="text-right">
+								<i>Novelist team</i>
+							</div>
+						</div>
+						<small class="mx-auto mb-5 text-white-50">&copy; 2020 by NOVELI.ST</small>
+					</div>
+				</div>
+			</transition>
 		</main>
 		<nav class="fixed-bottom d-flex w-100 py-1 bg-light text-dark">
-			<svg class="px-3 py-2 wh-24p content-box" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"></path></svg>
-			<svg class="ml-auto border-right px-3 py-2 wh-24p content-box" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"></path></svg>
+			<svg v-on:click="toggleAbout" class="my-auto px-3 py-1 wh-30p content-box" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><circle fill="#D4145A" cx="128" cy="128" r="128"/><path fill="#ffffff" d="M113.9,140.5c-6.2-6.9-6.6-17.3-0.6-24.6c6.6-8.1,18.7-9.3,26.7-2.7c8.2,6.6,9.4,18.7,2.7,26.7 c-6,7.4-16.3,9.1-24.3,4.3L44,235.4l3.8,2.9c2.6-3.9,31.1-42,114.1-52.8c20.1-50.6,72.5-117.3,81.8-128.8 c-15.6-25.5-39.4-45.3-67.7-56l0,0c-9,10.7-64.1,76.2-110.2,106.3c6,83.4-26.3,118.2-29.9,121.6l3.5,3.1L113.9,140.5z"/></svg>
+			<svg class="ml-auto border-right px-3 py-2 wh-24p content-box" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"></path></svg>
 			<div class="position-relative">
 				<div v-show="isSortMenuOpen" class="position-absolute b-0 bg-light w-100 rounded">
 					<div class="d-flex flex-column py-1">
@@ -44,64 +62,83 @@
 		data(){
 			return {
 				isShowAlerts: false,
+				isAboutShow: false,
 				isHideListened: false,
 				isSortMenuOpen: false,
 				isShowFullPlayer: false,
 				bookIndex: 0,
 				books: [
 					{
+						id: 1,
 						thumbnail: "http://mobitoon.ru/novelist/images/books/1/preview.jpg",
 						title: "First book",
 						author: "Mr. First",
-						listened: 100
+						listened: 100,
+						stars: 5
 					},
 					{
+						id: 2,
 						thumbnail: "http://mobitoon.ru/novelist/images/books/2/preview.jpg",
 						title: "Second book",
 						author: "Mrs. Second",
-						listened: 100
+						listened: 100,
+						stars: 0
 					},
 					{
+						id: 3,
 						thumbnail: "http://mobitoon.ru/novelist/images/books/3/preview.jpg",
 						title: "Third book",
 						author: "Mrs. Third",
-						listened: 100
+						listened: 100,
+						stars: 2
 					},
 					{
+						id: 4,
 						thumbnail: "http://mobitoon.ru/novelist/images/books/4/preview.jpg",
 						title: "Fourth book",
 						author: "Mr. Fourth",
-						listened: 100
+						listened: 100,
+						stars: 4
 					},
 					{
+						id: 5,
 						thumbnail: "http://mobitoon.ru/novelist/images/books/5/preview.jpg",
 						title: "Fifth book",
 						author: "Mr. Fifth",
-						listened: 100
+						listened: 100,
+						stars: 4
 					},
 					{
+						id: 6,
 						thumbnail: "http://mobitoon.ru/novelist/images/books/6/preview.jpg",
 						title: "Sixth book",
 						author: "Ms. Sexth",
-						listened: 94
+						listened: 94,
+						stars: 0
 					},
 					{
+						id: 7,
 						thumbnail: "http://mobitoon.ru/novelist/images/books/7/preview.jpg",
 						title: "Seventh book",
 						author: "Mr. Seventh",
-						listened: 100
+						listened: 100,
+						stars: 1
 					},
 					{
+						id: 8,
 						thumbnail: "http://mobitoon.ru/novelist/images/books/8/preview.jpg",
 						title: "Eighth book",
 						author: "Mr. Eighth",
-						listened: 7
+						listened: 7,
+						stars: 0
 					},
 					{
+						id: 9,
 						thumbnail: "http://mobitoon.ru/novelist/images/books/9/preview.jpg",
 						title: "Nineth book",
 						author: "Mrs. Nineth",
-						listened: 65
+						listened: 65,
+						stars: 0
 					}
 				]
 			}
@@ -115,12 +152,18 @@
 				this.bookIndex = index;
 
 				console.log(index, this.isShowFullPlayer)
+			},
+			toggleAbout(){
+				this.isAboutShow = !this.isAboutShow
 			}
 		},
 		watch: {
 			isHideListened(){
 				this.isShowAlerts = true
 				setTimeout(() => this.isShowAlerts = false, 2000)
+			},
+			isAboutShow(){
+
 			},
 			isShowFullPlayer(){
 				console.log('isShowFullPlayer was change')
@@ -135,15 +178,16 @@
     /* .opacity-50:not(:hover) {
 		opacity: .50;
 	} */
-    .slide-fade-enter-active {
-        transition: all .3s ease-out;
-    }
-    .slide-fade-leave-active {
-        transition: all .6s ease-in;
-    }
-    .slide-fade-enter, .slide-fade-leave-to
+    .fade-slide-y-enter-active { transition: all .3s ease-in; }
+    .fade-slide-y-leave-active { transition: all .6s ease-out; }
+    .fade-slide-y-enter, .fade-slide-y-leave-to
     {
         transform: translateY(-30px);
         opacity: 0;
-    }
+	}
+	
+	.fade-enter-active,
+	.fade-leave-active { transition: opacity .5s; }
+	.fade-enter,
+	.fade-leave-to { opacity: 0; }
 </style>
