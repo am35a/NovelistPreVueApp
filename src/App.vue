@@ -59,7 +59,7 @@
 
 <script>
 	export default {
-		data(){
+		data() {
 			return {
 				isShowAlerts: false,
 				isAboutShow: false,
@@ -143,15 +143,27 @@
 				]
 			}
 		},
+        provide() {
+			const prvBook = {}
+			Object.defineProperty(prvBook, 'bookIndex', {
+				enumerable: true,
+				get:() => this.books[this.bookIndex]
+			})
+            return {
+				prvBook
+				// prvBook: this.books[this.bookIndex]
+				// https://www.youtube.com/watch?v=xeIKd-CicK8
+            }
+        },
 		methods: {
 			toggleHideListened(){
 				this.isHideListened = !this.isHideListened
 			},
 			selectBook(index){
 				this.isShowFullPlayer = true
-				this.bookIndex = index;
-
-				console.log(index, this.isShowFullPlayer)
+				this.bookIndex = index
+				// this.prvBook = this.books[this.bookIndex]
+				console.log(index, this.isShowFullPlayer, this.prvBook)
 			},
 			toggleAbout(){
 				this.isAboutShow = !this.isAboutShow
@@ -163,14 +175,14 @@
 				setTimeout(() => this.isShowAlerts = false, 2000)
 			},
 			isAboutShow(){
-
+				console.log('About showed')
 			},
 			isShowFullPlayer(){
 				console.log('isShowFullPlayer was change')
 			}
 		},
-		components: {
-		}
+		// components: {
+		// }
 	}
 </script>
 

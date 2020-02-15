@@ -62,12 +62,16 @@
                 </div>
             </div>
         </div>
+        {{prvBook}}
     </div>
 </template>
 
 <script>
     export default {
         props:[
+        ],
+        inject: [
+            'prvBook'
         ],
         data(){
             return{
