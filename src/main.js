@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Player from './Player.vue'
+import Player from './components/Player.vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import './assets/style.css'

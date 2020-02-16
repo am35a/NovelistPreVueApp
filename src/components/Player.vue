@@ -76,23 +76,15 @@
         </div>
 <!--    end | player book controls -->
 <!-- end | player main container -->
-
-<!-- start | share main container -->
-        <div v-show="isShareShow">
-            sare main container
-        </div>
-<!-- end | share main container -->
-
-<!-- start | voting main container -->
-        <div v-show="isVoteShow">
-            voting main container
-        </div>
-<!-- end | voting main container -->
-
+		<PlayerShare v-show="isShareShow"></PlayerShare>
+        <PlayerVote v-show="isVoteShow"></PlayerVote>
     </div>
 </template>
 
 <script>
+    import PlayerShare from './PlayerShare.vue'
+    import PlayerVote from './PlayerVote.vue'
+
     export default {
         // props:[
         // ],
@@ -117,6 +109,10 @@
                 this.$parent.isShowFullPlayer = false
             }
 
+        },
+        components: {
+            PlayerShare,
+            PlayerVote
         }
     }
 </script>
