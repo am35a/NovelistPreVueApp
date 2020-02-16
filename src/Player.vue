@@ -1,6 +1,8 @@
 <template>
     <div class="player-container position-fixed overflow-hidden bg-light l-0 b-0 flex-column text-black-75">
 		<div class="player-container-bkg position-absolute l-0 t-0 w-100 h-100" v-bind:style="{ 'background-image' : 'url(' + 'http://mobitoon.ru/novelist/images/books/' + playBook.bookIndex.id + '/preview.jpg' + ')'}"></div>
+<!-- start | player main container -->
+<!--    start | palyer nav -->
         <div class="d-flex flex-row">
             <div class="d-flex justify-content-between w-50">
                 <svg class="wh-18p p-3 content-box" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M352 320c-22.608 0-43.387 7.819-59.79 20.895l-102.486-64.054a96.551 96.551 0 0 0 0-41.683l102.486-64.054C308.613 184.181 329.392 192 352 192c53.019 0 96-42.981 96-96S405.019 0 352 0s-96 42.981-96 96c0 7.158.79 14.13 2.276 20.841L155.79 180.895C139.387 167.819 118.608 160 96 160c-53.019 0-96 42.981-96 96s42.981 96 96 96c22.608 0 43.387-7.819 59.79-20.895l102.486 64.054A96.301 96.301 0 0 0 256 416c0 53.019 42.981 96 96 96s96-42.981 96-96-42.981-96-96-96z"></path></svg>
@@ -13,7 +15,10 @@
                 <svg v-on:click="closePlayer" class="wh-18p p-3 content-box" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>                
             </div>
         </div>
+<!--    end | palyer nav -->
+<!--    start | player book controls -->
         <div class="my-auto px-3">
+<!--        start | book's range and speed controls -->
             <div class="position-relative">
                 <input class="custom-range player-custom-range position-absolute" type="range" v-model="playBook.bookIndex.listened" min="0" max="100">
                 <div class="progress bg-white" style="height: 1px;">
@@ -28,6 +33,8 @@
 				</div>
 				<small>43200</small>
 			</div>
+<!--        end | book's range and speed controls -->
+<!--        start | book's cover -->
             <div class="px-4 text-center">
                 <svg slot="bookCoverPreview" class="img-fluid rounded-lg shadow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
                     <title>{{ playBook.bookIndex.title + ' by ' + playBook.bookIndex.author }}</title>
@@ -39,6 +46,8 @@
                     <rect width="512" height="512" fill="url(#bookCover)"></rect>
                 </svg>
             </div>
+<!--        end | book's cover -->
+<!--        start | book's chapters list controls -->
             <div class="d-flex justify-content-between align-items-center">
                 <div>
                     <svg class="wh-24p p-4 content-box" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zM142.1 273l135.5 135.5c9.4 9.4 24.6 9.4 33.9 0l17-17c9.4-9.4 9.4-24.6 0-33.9L226.9 256l101.6-101.6c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L142.1 239c-9.4 9.4-9.4 24.6 0 34z"></path></svg>
@@ -48,6 +57,8 @@
                     <svg class="wh-24p p-4 content-box" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm113.9 231L234.4 103.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L285.1 256 183.5 357.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L369.9 273c9.4-9.4 9.4-24.6 0-34z"></path></svg>
                 </div>
             </div>
+<!--        end | book's chapters list controls -->
+<!--        start | book's play controls -->
             <div class="d-flex justify-content-center align-items-center">
                 <div class="p-3 mt-4 text-center">
                     <svg class="wh-42p" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M11.5 280.6l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2zm256 0l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2z"></path></svg>
@@ -61,8 +72,23 @@
                     <div><sup>+100 sig</sup></div>
                 </div>
             </div>
+<!--        end | book's play controls -->
         </div>
-        <!-- {{playBook.bookIndex.id}} -->
+<!--    end | player book controls -->
+<!-- end | player main container -->
+
+<!-- start | share main container -->
+        <div v-show="isShareShow">
+            sare main container
+        </div>
+<!-- end | share main container -->
+
+<!-- start | voting main container -->
+        <div v-show="isVoteShow">
+            voting main container
+        </div>
+<!-- end | voting main container -->
+
     </div>
 </template>
 
@@ -75,6 +101,8 @@
         ],
         data(){
             return{
+                isShareShow: false,
+                isVoteShow: false,
                 classStarsColor: {
                     'text-danger': this.playBook.bookIndex.stars == 1,
                     'text-warning': this.playBook.bookIndex.stars > 1 && this.playBook.bookIndex.stars < 5,
