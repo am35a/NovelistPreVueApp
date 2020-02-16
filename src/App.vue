@@ -1,9 +1,12 @@
 <template>
 	<div>
+<!--	start | player template -->
 		<transition name="fade">
 			<app-player v-if="isShowFullPlayer"></app-player>
 		</transition>
-		<main class="container text-light mb-4 pb-4">
+<!--	end | player template -->
+		<main class="position-absolute l-0 t-0 b-nav w-100 text-light overflow-auto px-3">
+<!--		start | alerts -->
 			<transition name="fade-slide-y">
 				<div v-show="isShowAlerts && !isAboutShow" class="fixed-top text-center p-4">
 					<div class="alert alert-dark small p-2 border-0">
@@ -12,6 +15,7 @@
 					</div>
 				</div>
 			</transition>
+<!--		end | alerts -->
 			<div class="media align-items-center my-3" v-for="(book, index) in books" v-bind:key="index" v-show="!(isHideListened && book.listened == 100)" v-on:click="selectBook(index)">
 				<img class="mr-3 wh-78p rounded" v-bind:src="'http://mobitoon.ru/novelist/images/books/' + book.id + '/preview.jpg'" v-bind:alt="book.title + ' by ' + book.author">
 				<div class="media-body">
@@ -20,10 +24,11 @@
 					<div v-bind:class="{ 'text-success' : book.listened < 100 }">{{ book.listened == 100 ? 'Listening completed' : book.listened + '% listened' }}</div>
 				</div>
 			</div>
+<!--		start | about  -->
 			<transition name="fade">
-				<div v-show="isAboutShow" class="about-container position-fixed l-0 t-0 w-100 h-100 bg-dark">
-					<div class="d-flex flex-column h-100 pb-5 container">
-						<a class="w-50 mx-auto mt-5" href="http://noveli.st" target="_blank">
+				<div v-show="isAboutShow" v-on:click="toggleAbout" class="about-container position-fixed l-0 t-0 b-nav w-100 bg-dark">
+					<div class="d-flex flex-column h-100 px-3 py-5">
+						<a class="w-50 mx-auto" href="http://noveli.st" target="_blank">
 							<img  src="./assets/logoname.svg" alt="Novelist">
 						</a>
 						<div class="m-auto">
@@ -32,10 +37,11 @@
 								<i>Novelist team</i>
 							</div>
 						</div>
-						<small class="mx-auto mb-5 text-white-50">&copy; 2020 by NOVELI.ST</small>
+						<small class="mx-auto text-white-50">&copy; 2020 by NOVELI.ST</small>
 					</div>
 				</div>
 			</transition>
+<!--		end | about  -->			
 		</main>
 		<nav class="fixed-bottom d-flex w-100 py-1 bg-light text-dark">
 			<svg v-on:click="toggleAbout" class="my-auto px-3 py-1 wh-30p content-box" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><circle fill="#D4145A" cx="128" cy="128" r="128"/><path fill="#ffffff" d="M113.9,140.5c-6.2-6.9-6.6-17.3-0.6-24.6c6.6-8.1,18.7-9.3,26.7-2.7c8.2,6.6,9.4,18.7,2.7,26.7 c-6,7.4-16.3,9.1-24.3,4.3L44,235.4l3.8,2.9c2.6-3.9,31.1-42,114.1-52.8c20.1-50.6,72.5-117.3,81.8-128.8 c-15.6-25.5-39.4-45.3-67.7-56l0,0c-9,10.7-64.1,76.2-110.2,106.3c6,83.4-26.3,118.2-29.9,121.6l3.5,3.1L113.9,140.5z"/></svg>
@@ -157,11 +163,7 @@
 				enumerable: true,
 				get:() => this.books[this.bookIndex]
 			})
-            return {
-				playBook
-				// prvBook: this.books[this.bookIndex]
-				// https://www.youtube.com/watch?v=xeIKd-CicK8
-            }
+            return { playBook }
         },
 		methods: {
 			toggleHideListened(){
@@ -170,7 +172,7 @@
 			selectBook(index){
 				this.isShowFullPlayer = true
 				this.bookIndex = index
-				// this.prvBook = this.books[this.bookIndex]
+
 				console.log(index, this.isShowFullPlayer, this.prvBook)
 			},
 			toggleAbout(){

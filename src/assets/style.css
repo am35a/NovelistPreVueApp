@@ -2,6 +2,7 @@
 	.t-0 { top: 0; }
 	.r-0 { right: 0; }
 	.b-0 { bottom: 0; }
+	.b-nav { bottom: 48px; }
 	.text-black-75 { color: rgba(0, 0, 0, .75); }
 
 	.wh-18p {
