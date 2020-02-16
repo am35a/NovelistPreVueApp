@@ -13,7 +13,7 @@
 				</div>
 			</transition>
 			<div class="media align-items-center my-3" v-for="(book, index) in books" v-bind:key="index" v-show="!(isHideListened && book.listened == 100)" v-on:click="selectBook(index)">
-				<img class="mr-3 wh-78p rounded" v-bind:src="book.thumbnail" v-bind:alt="book.title + ' by ' + book.author">
+				<img class="mr-3 wh-78p rounded" v-bind:src="'http://mobitoon.ru/novelist/images/books/' + book.id + '/preview.jpg'" v-bind:alt="book.title + ' by ' + book.author">
 				<div class="media-body">
 					<div class="h5 mb-0">{{ book.title }}</div>
 					<small class="text-white-50">{{ book.author }}</small>
@@ -69,32 +69,16 @@
 				bookIndex: 0,
 				books: [
 					{
-						id: 1,
-						thumbnail: "http://mobitoon.ru/novelist/images/books/1/preview.jpg",
-						title: "First book",
-						author: "Mr. First",
+						id: 11,
+						// thumbnail: "http://mobitoon.ru/novelist/images/books/11/preview.jpg",
+						title: "Eleven book",
+						author: "Mr. Eleventh",
 						listened: 100,
 						stars: 5
 					},
 					{
-						id: 2,
-						thumbnail: "http://mobitoon.ru/novelist/images/books/2/preview.jpg",
-						title: "Second book",
-						author: "Mrs. Second",
-						listened: 100,
-						stars: 0
-					},
-					{
-						id: 3,
-						thumbnail: "http://mobitoon.ru/novelist/images/books/3/preview.jpg",
-						title: "Third book",
-						author: "Mrs. Third",
-						listened: 100,
-						stars: 2
-					},
-					{
 						id: 4,
-						thumbnail: "http://mobitoon.ru/novelist/images/books/4/preview.jpg",
+						// thumbnail: "http://mobitoon.ru/novelist/images/books/4/preview.jpg",
 						title: "Fourth book",
 						author: "Mr. Fourth",
 						listened: 100,
@@ -102,15 +86,31 @@
 					},
 					{
 						id: 5,
-						thumbnail: "http://mobitoon.ru/novelist/images/books/5/preview.jpg",
+						// thumbnail: "http://mobitoon.ru/novelist/images/books/5/preview.jpg",
 						title: "Fifth book",
 						author: "Mr. Fifth",
 						listened: 100,
 						stars: 4
 					},
 					{
+						id: 12,
+						// thumbnail: "http://mobitoon.ru/novelist/images/books/12/preview.jpg",
+						title: "Twelve book",
+						author: "Mrs. Twelveth",
+						listened: 100,
+						stars: 0
+					},
+					{
+						id: 3,
+						// thumbnail: "http://mobitoon.ru/novelist/images/books/3/preview.jpg",
+						title: "Third book",
+						author: "Mrs. Third",
+						listened: 100,
+						stars: 2
+					},
+					{
 						id: 6,
-						thumbnail: "http://mobitoon.ru/novelist/images/books/6/preview.jpg",
+						// thumbnail: "http://mobitoon.ru/novelist/images/books/6/preview.jpg",
 						title: "Sixth book",
 						author: "Ms. Sexth",
 						listened: 94,
@@ -118,7 +118,7 @@
 					},
 					{
 						id: 7,
-						thumbnail: "http://mobitoon.ru/novelist/images/books/7/preview.jpg",
+						// thumbnail: "http://mobitoon.ru/novelist/images/books/7/preview.jpg",
 						title: "Seventh book",
 						author: "Mr. Seventh",
 						listened: 100,
@@ -126,7 +126,7 @@
 					},
 					{
 						id: 8,
-						thumbnail: "http://mobitoon.ru/novelist/images/books/8/preview.jpg",
+						// thumbnail: "http://mobitoon.ru/novelist/images/books/8/preview.jpg",
 						title: "Eighth book",
 						author: "Mr. Eighth",
 						listened: 7,
@@ -134,9 +134,17 @@
 					},
 					{
 						id: 9,
-						thumbnail: "http://mobitoon.ru/novelist/images/books/9/preview.jpg",
+						// thumbnail: "http://mobitoon.ru/novelist/images/books/9/preview.jpg",
 						title: "Nineth book",
 						author: "Mrs. Nineth",
+						listened: 65,
+						stars: 0
+					},
+					{
+						id: 10,
+						// thumbnail: "http://mobitoon.ru/novelist/images/books/10/preview.jpg",
+						title: "Ten book",
+						author: "Mrs. Tenth",
 						listened: 65,
 						stars: 0
 					}
@@ -144,13 +152,13 @@
 			}
 		},
         provide() {
-			const prvBook = {}
-			Object.defineProperty(prvBook, 'bookIndex', {
+			const playBook = {}
+			Object.defineProperty(playBook, 'bookIndex', {
 				enumerable: true,
 				get:() => this.books[this.bookIndex]
 			})
             return {
-				prvBook
+				playBook
 				// prvBook: this.books[this.bookIndex]
 				// https://www.youtube.com/watch?v=xeIKd-CicK8
             }

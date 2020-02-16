@@ -1,6 +1,6 @@
 <template>
     <div class="player-container position-fixed overflow-hidden bg-light l-0 b-0 flex-column text-black-75">
-		<div class="player-container-bkg position-absolute l-0 t-0 w-100 h-100" v-bind:style="{ 'background-image' : 'url(' + this.$parent.books[this.$parent.bookIndex].thumbnail + ')'}"></div>
+		<div class="player-container-bkg position-absolute l-0 t-0 w-100 h-100" v-bind:style="{ 'background-image' : 'url(' + 'http://mobitoon.ru/novelist/images/books/' + playBook.bookIndex.id + '/preview.jpg' + ')'}"></div>
         <div class="d-flex flex-row">
             <div class="d-flex justify-content-between w-50">
                 <svg class="wh-18p p-3 content-box" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M352 320c-22.608 0-43.387 7.819-59.79 20.895l-102.486-64.054a96.551 96.551 0 0 0 0-41.683l102.486-64.054C308.613 184.181 329.392 192 352 192c53.019 0 96-42.981 96-96S405.019 0 352 0s-96 42.981-96 96c0 7.158.79 14.13 2.276 20.841L155.79 180.895C139.387 167.819 118.608 160 96 160c-53.019 0-96 42.981-96 96s42.981 96 96 96c22.608 0 43.387-7.819 59.79-20.895l102.486 64.054A96.301 96.301 0 0 0 256 416c0 53.019 42.981 96 96 96s96-42.981 96-96-42.981-96-96-96z"></path></svg>
@@ -15,9 +15,9 @@
         </div>
         <div class="my-auto px-3">
             <div class="position-relative">
-                <input class="custom-range player-custom-range position-absolute" type="range" v-model="playerRange" min="0" max="100">
+                <input class="custom-range player-custom-range position-absolute" type="range" v-model="playBook.bookIndex.listened" min="0" max="100">
                 <div class="progress bg-white" style="height: 1px;">
-                    <div class="progress-bar bg-success" role="progressbar" v-bind:style="{width: this.$parent.books[this.$parent.bookIndex].listened + '%'}"></div>
+                    <div class="progress-bar bg-success" role="progressbar" v-bind:style="{width: playBook.bookIndex.listened + '%'}"></div>
                 </div>
             </div>
 			<div class="d-flex justify-content-between align-items-start">
@@ -30,10 +30,10 @@
 			</div>
             <div class="px-4 text-center">
                 <svg slot="bookCoverPreview" class="img-fluid rounded-lg shadow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-                    <title>{{ this.$parent.books[this.$parent.bookIndex].title + ' by ' + this.$parent.books[this.$parent.bookIndex].author }}</title>
+                    <title>{{ playBook.bookIndex.title + ' by ' + playBook.bookIndex.author }}</title>
                     <defs>
                         <pattern id="bookCover" patternUnits="userSpaceOnUse" width="512" height="512">
-                            <image v-bind:xlink:href="this.$parent.books[this.$parent.bookIndex].thumbnail" x="0" y="0" width="512" height="512"/>
+                            <image v-bind:xlink:href="'http://mobitoon.ru/novelist/images/books/' + playBook.bookIndex.id + '/preview.jpg'" x="0" y="0" width="512" height="512"/>
                         </pattern>
                     </defs>
                     <rect width="512" height="512" fill="url(#bookCover)"></rect>
@@ -62,32 +62,28 @@
                 </div>
             </div>
         </div>
-        {{prvBook}}
+        <!-- {{playBook.bookIndex.id}} -->
     </div>
 </template>
 
 <script>
     export default {
-        props:[
-        ],
+        // props:[
+        // ],
         inject: [
-            'prvBook'
+            'playBook'
         ],
         data(){
             return{
-                playerRange: this.$parent.books[this.$parent.bookIndex].listened,
                 classStarsColor: {
-                    'text-danger': this.$parent.books[this.$parent.bookIndex].stars == 1,
-                    'text-warning': this.$parent.books[this.$parent.bookIndex].stars > 1 && this.$parent.books[this.$parent.bookIndex].stars < 5,
-                    'text-success': this.$parent.books[this.$parent.bookIndex].stars == 5
+                    'text-danger': this.playBook.bookIndex.stars == 1,
+                    'text-warning': this.playBook.bookIndex.stars > 1 && this.playBook.bookIndex.stars < 5,
+                    'text-success': this.playBook.bookIndex.stars == 5
                 }
             }
         },
-        watch: {
-            playerRange(){
-                this.$parent.books[this.$parent.bookIndex].listened = this.playerRange
-            }
-        },
+        // watch: {
+        // },
         methods: {
             closePlayer(){
                 this.$parent.isShowFullPlayer = false
